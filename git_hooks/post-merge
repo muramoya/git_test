@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+package_changed="$(git diff --name-only --no-commit-id ORIG_HEAD HEAD ../package.json)"
+
+if [ -n "${package_changed}" || -d ../node_modules ]; then
+    npm install
+fi
+
+npm run-script build
